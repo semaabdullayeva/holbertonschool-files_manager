@@ -1,6 +1,6 @@
 // utils/db.mjs
 
-import { MongoClient } from 'mongodb';
+import MongoClient from 'mongodb';
 
 const host = process.env.DB_HOST || 'localhost';
 const port = process.env.DB_PORT || 27017;
@@ -44,9 +44,9 @@ class DBClient {
 
   async getUser(query) {
     // Search for the user in the collection
-    console.log('QUERY IN DB.MJS', query);
+    console.log('QUERY IN DB.JS', query);
     const user = await this.db.collection('users').findOne(query);
-    console.log('GET USER IN DB.MJS', user);
+    console.log('GET USER IN DB.JS', user);
     return user;
   }
 
@@ -63,4 +63,5 @@ class DBClient {
 }
 
 // Create and export an instance of DBClient
-module.exports = new DBClient();
+const dbClient = new DBClient();
+export default dbClient;
